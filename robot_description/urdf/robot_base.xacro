@@ -1,0 +1,78 @@
+<?xml version="1.0"?> 
+
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="robot_description"> 
+<xacro:include filename="$(find robot_description)/urdf/robot_essentials.xacro" />
+<xacro:include filename="$(find robot_description)/urdf/gazebo_essentials.xacro" />
+ <!-- Import diffbot ros2_control description -->
+  <xacro:include filename="$(find robot_description)/urdf/diffbot.ros2_control.xacro" />
+  <xacro:arg name="use_sim" default="true" />
+
+
+<xacro:include filename="$(find robot_description)/urdf/camera.xacro" />
+<xacro:include filename="$(find robot_description)/urdf/hokuyo.xacro" />
+
+
+  <!-- BASE_LINK -->
+  <link name="base_link">
+    <collision>
+      <origin xyz="0 0 0.0" rpy="0 0 0" />
+      <geometry>
+        <!--<mesh filename="package://mobile_manipulator_body/meshes/robot_base.stl"/>-->
+        <box size="0.38 0.203 0.07" />
+      </geometry>
+    </collision>
+    <inertial>
+      <mass value="5.0" />
+      <origin xyz="0 0 0" />
+      <inertia ixx="1.391" ixy="0.004" ixz="0.0" iyy="6.853" iyz="0.0" izz="6.125" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <!--<mesh filename="package://mobile_manipulator_body/meshes/robot_base.stl"/>-->
+        <box size="0.38 0.203 0.07" />
+      </geometry>
+    </visual>
+  </link>
+  
+<xacro:robot_wheel prefix="front_left" origin="0 0 0"/> 
+
+<xacro:robot_wheel prefix="front_right" origin="0 0 0"/> 
+
+<xacro:robot_wheel prefix="rear_left" origin="0 0 0"/> 
+
+<xacro:robot_wheel prefix="rear_right" origin="0 0 0"/> 
+
+<xacro:wheel_joint prefix="front_left" origin="0.09 0.14 0"/> 
+
+<xacro:wheel_joint prefix="front_right" origin="0.09 -0.14 0"/> 
+
+<xacro:wheel_joint prefix="rear_left" origin="-0.09 0.14 0"/> 
+
+<xacro:wheel_joint prefix="rear_right" origin="-0.09 -0.14 0"/> 
+
+<xacro:base_transmission prefix="front_left"/> 
+
+<xacro:base_transmission prefix="front_right"/> 
+
+<xacro:base_transmission prefix="rear_left"/> 
+
+<xacro:base_transmission prefix="rear_right"/> 
+
+<xacro:wheel_friction prefix="front_left"/> 
+
+<xacro:wheel_friction prefix="front_right"/> 
+
+<xacro:wheel_friction prefix="rear_left"/> 
+
+<xacro:wheel_friction prefix="rear_right"/> 
+
+<xacro:diffbot_ros2_control name="robot_ros2_control" prefix="" use_sim="$(arg use_sim)" />
+
+<xacro:driver/>
+
+<xacro:robot_camera/> 
+
+<xacro:robot_lidar/> 
+ 
+</robot> 
