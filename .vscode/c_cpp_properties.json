@@ -1,0 +1,24 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/opt/ros/humble/include/**",
+        "/home/wenis/Portifolio/Just_ROS/SVTRP/ros2/src/action_service/include/**",
+        "/home/wenis/Portifolio/Just_ROS/SVTRP/ros2/src/custom_messages/include/**",
+        "/home/wenis/Portifolio/Just_ROS/SVTRP/ros2/src/topic_publisher_pkg/include/**",
+        "/home/wenis/Portifolio/Just_ROS/SVTRP/ros2/src/wall_service_pkg/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}
