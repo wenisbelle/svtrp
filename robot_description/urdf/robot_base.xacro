@@ -34,6 +34,19 @@
       </geometry>
     </visual>
   </link>
+
+  <!-- Base FootPrint Link-->
+
+ <joint name="base_footprint_joint" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="base_footprint" />
+ </joint>
+
+  <link name="base_footprint">
+  </link>
+
+
   
 <xacro:robot_wheel prefix="front_left" origin="0 0 0"/> 
 
