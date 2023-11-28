@@ -1,0 +1,6 @@
+<?xml version='1.0' ?>
+<launch>
+    <include file="$(find-pkg-share robot_gazebo)/launch/start_world_race_track.launch.py">
+    </include>
+    <include file="$(find-pkg-share robot_gazebo)/launch/spawn_robot_description_ros2_final.launch.xml"/>
+</launch>
