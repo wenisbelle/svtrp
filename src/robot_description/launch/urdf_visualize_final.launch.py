@@ -39,7 +39,7 @@ def generate_launch_description():
 
     
     # RVIZ Configuration
-    rviz_config_dir = os.path.join(get_package_share_directory(package_description), 'rviz', 'urdf_vis.rviz')
+    rviz_config_dir = os.path.join(get_package_share_directory(package_description), 'rviz', 'default.rviz')
 
 
     rviz_node = Node(
@@ -55,6 +55,6 @@ def generate_launch_description():
     return LaunchDescription(
         [            
             robot_state_publisher_node,
-            #rviz_node
+            rviz_node
         ]
     )

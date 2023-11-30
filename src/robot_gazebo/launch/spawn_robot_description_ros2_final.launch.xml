@@ -1,0 +1,9 @@
+<?xml version='1.0' ?>
+<launch>
+    <!-- Publish URDF file in robot_description topic -->
+    <include file="$(find-pkg-share robot_description)/launch/urdf_visualize_final.launch.py"/>
+    <!-- Read robot_description and spawn in gazebo running sim -->
+    <include file="$(find-pkg-share robot_gazebo)/launch/spawn_robot_description2.launch.py"/>
+    <!-- Load the controllers -->
+    <include file="$(find-pkg-share robot_gazebo)/launch/control_position_velocity_robot_description.launch.py"/>
+</launch>

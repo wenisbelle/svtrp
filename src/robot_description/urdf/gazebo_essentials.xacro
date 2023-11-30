@@ -27,37 +27,20 @@
   </gazebo>
 </xacro:macro>
 
-	 <!-- camera -->
+	 <!-- Front camera -->
 
-<gazebo reference="camera_link">
-        <sensor name="camera" type="wideanglecamera">
+    <gazebo reference="front_camera_link">
+        <sensor name="front_camera" type="camera">
           <camera>
-            <horizontal_fov>6.283</horizontal_fov>
+            <horizontal_fov>1.46608</horizontal_fov>
             <image>
               <width>320</width>
               <height>240</height>
+              <format>R8G8B8</format>
             </image>
-            <clip>
-              <near>0.1</near>
-              <far>100</far>
-            </clip>
-            <lens>
-              <type>custom</type>
-              <custom_function>
-                <c1>1.05</c1>
-                <c2>4</c2>
-                <f>1.0</f>
-                <fun>tan</fun>
-              </custom_function>
-              <scale_to_hfov>true</scale_to_hfov>
-              <cutoff_angle>3.1415</cutoff_angle>
-              <env_texture_size>512</env_texture_size>
-            </lens>
-            <always_on>1</always_on>
-            <update_rate>30</update_rate>
           </camera>
-          <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
-            <cameraName>rgb_camera</cameraName>
+          <plugin name="front_camera_controller" filename="libgazebo_ros_camera.so">
+            <cameraName>base/front_camera</cameraName>
             <imageTopicName>image_raw</imageTopicName>
             <cameraInfoTopicName>camera_info</cameraInfoTopicName>
             <frameName>rgb_camera_link_frame</frameName>
@@ -65,7 +48,119 @@
           </plugin>
         </sensor>
     </gazebo>
-    
+  
+	 <!-- Rear camera -->
+
+    <gazebo reference="rear_camera_link">
+        <sensor name="rear_camera" type="camera">
+          <camera>
+            <horizontal_fov>1.46608</horizontal_fov>
+            <image>
+              <width>320</width>
+              <height>240</height>
+              <format>R8G8B8</format>
+            </image>
+          </camera>
+          <plugin name="rear_camera_controller" filename="libgazebo_ros_camera.so">
+            <cameraName>base/rear_camera</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>rgb_camera_link_frame</frameName>
+            <hackBaseline>0.07</hackBaseline>
+          </plugin>
+        </sensor>
+    </gazebo>
+
+
+  	 <!-- Left camera -->
+
+    <gazebo reference="left_camera_link">
+        <sensor name="left_camera" type="camera">
+          <camera>
+            <horizontal_fov>1.46608</horizontal_fov>
+            <image>
+              <width>320</width>
+              <height>240</height>
+              <format>R8G8B8</format>
+            </image>
+          </camera>
+          <plugin name="left_camera_controller" filename="libgazebo_ros_camera.so">
+            <cameraName>base/left_camera</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>rgb_camera_link_frame</frameName>
+            <hackBaseline>0.07</hackBaseline>
+          </plugin>
+        </sensor>
+    </gazebo>
+
+ 
+	 <!-- Right camera -->
+
+    <gazebo reference="right_camera_link">
+        <sensor name="right_camera" type="camera">
+          <camera>
+            <horizontal_fov>1.46608</horizontal_fov>
+            <image>
+              <width>320</width>
+              <height>240</height>
+              <format>R8G8B8</format>
+            </image>
+          </camera>
+          <plugin name="right_camera_controller" filename="libgazebo_ros_camera.so">
+            <cameraName>base/right_camera</cameraName>
+            <imageTopicName>image_raw</imageTopicName>
+            <cameraInfoTopicName>camera_info</cameraInfoTopicName>
+            <frameName>rgb_camera_link_frame</frameName>
+            <hackBaseline>0.07</hackBaseline>
+          </plugin>
+        </sensor>
+    </gazebo>
+
+        <!-- Depth Camera -->
+  <gazebo reference="front_camera_link">
+     <sensor type="depth" name="depth_camera">
+      <always_on>true</always_on>
+      <camera>
+          <horizontal_fov>1.3439</horizontal_fov>
+          <image>
+              <width>1920</width>
+              <height>1080</height>
+              <format>R8G8B8</format>
+          </image>
+          <depth_camera></depth_camera>
+          <clip>
+              <near>0.03</near>
+              <far>8</far>
+          </clip>
+      </camera>
+      
+      <plugin name="intel_realsense_d430_depth_driver" filename="libgazebo_ros_camera.so">
+        <baseline>0.2</baseline>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>30.0</updateRate>
+        <cameraName>depth_camera</cameraName>
+        <frameName>camera_depth_link</frameName>
+        <imageTopicName>rgb/image_raw</imageTopicName>
+        <depthImageTopicName>depth/image_raw</depthImageTopicName>
+        <pointCloudTopicName>depth/points</pointCloudTopicName>
+        <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+        <depthImageCameraInfoTopicName>depth/camera_info</depthImageCameraInfoTopicName>
+        <pointCloudCutoff>0.4</pointCloudCutoff>
+            <hackBaseline>0.07</hackBaseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+        <CxPrime>0.0</CxPrime>
+        <Cx>0.0</Cx>
+        <Cy>0.0</Cy>
+        <focalLength>0</focalLength>
+        <hackBaseline>0</hackBaseline>
+      </plugin>
+    </sensor>
+  </gazebo>
     
   <!-- hokuyo -->
  
@@ -93,14 +188,62 @@
         <update_rate>100.0</update_rate>
         <plugin name="laser" filename="libgazebo_ros_ray_sensor.so">
           <ros>
-            <namespace>/box_bot</namespace>
-            <remapping>~/out:=laser_scan</remapping>
+            <namespace></namespace>
+            <remapping>~/out:=scan</remapping>
           </ros>
           <output_type>sensor_msgs/LaserScan</output_type>
         </plugin>
       </sensor>
 	</gazebo>
   
-  
+  <!-- POINT CLOUND SENSOR -->
+
+
+  <gazebo reference="pointcloud_link">
+      <sensor type="ray" name="pointcloud_sensor">
+          <ray>
+          <scan>
+              <horizontal>
+                  <samples>50</samples>
+                  <resolution>1.0</resolution>
+                  <min_angle>-1.0</min_angle>
+                  <max_angle>1.0</max_angle>
+              </horizontal>
+              <vertical>
+                  <samples>50</samples>
+                  <resolution>1.0</resolution>
+                  <min_angle>-1.0</min_angle>
+                  <max_angle>1.0</max_angle>
+              </vertical>
+          </scan>
+          <range>
+              <min>0.10</min>
+              <max>5.0</max>
+              <resolution>0.01</resolution>
+          </range>
+          <!-- Using gazebo's noise instead of plugin's -->
+          <noise>
+              <type>gaussian</type>
+              <mean>0.0</mean>
+              <stddev>0.01</stddev>
+          </noise>
+          </ray>
+          <!-- Using gazebo's update rate instead of plugin's -->
+          <update_rate>30</update_rate>
+          <plugin name="gazebo_ros_block_laser_controller" filename="libgazebo_ros_ray_sensor.so">
+          <!-- Change namespace and output topic so published topic is /rrbot/laser/pointcloud -->
+          <ros>
+              <namespace>pointcloud_svtrp</namespace>
+              <argument>~/out:=pointcloud</argument>
+          </ros>
+          <!-- Set output to sensor_msgs/PointCloud to get same output type as gazebo_ros_block_laser -->
+          <output_type>sensor_msgs/PointCloud</output_type>
+          <frame_name>pointcloud_link</frame_name>
+
+          <!-- min_intensity instead of hokuyoMinIntensity -->
+          <min_intensity>100.0</min_intensity>
+          </plugin>
+      </sensor>
+  </gazebo>
 
 </robot>
