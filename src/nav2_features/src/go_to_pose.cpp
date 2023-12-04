@@ -5,6 +5,8 @@
 #include <string>
 #include <random>
 #include <vector>
+#include <sstream>
+#include <fstream>
 
 #include <chrono>
 #include <functional>
@@ -46,206 +48,37 @@ public:
     publisher_timer_ = this->create_wall_timer(
       50ms, std::bind(&MyActionClient::broadcast_timer_callback, this));
     
-    // Store all variables until I get everything into a .txt file
+    std::string file_path = "/home/svtrp/ros2_ws/src/nav2_features/src/poses.txt";
+    std::ifstream file(file_path);
 
-    geometry_msgs::msg::PoseStamped pose1;
-    pose1.header.frame_id = "map";
-    pose1.pose.position.x = 0;
-    pose1.pose.position.y = 0;
-    pose1.pose.position.z = 0.0;
-    pose1.pose.orientation.x = 0.0;
-    pose1.pose.orientation.y = 0.0;
-    pose1.pose.orientation.z = 0.0;
-    pose1.pose.orientation.w = 1.0;
-    goal_poses.push_back(pose1);
+    if (!file.is_open()) {
+        std::cerr << "Unable to open file: " << file_path << std::endl;
+        return;
+    }
 
-    geometry_msgs::msg::PoseStamped pose2;
-    pose2.header.frame_id = "map";
-    pose2.pose.position.x = 2.20;
-    pose2.pose.position.y = 2.86;
-    pose2.pose.position.z = 0.0;
-    pose2.pose.orientation.x = 0.0;
-    pose2.pose.orientation.y = 0.0;
-    pose2.pose.orientation.z = 0.7323598743914582;
-    pose2.pose.orientation.w = 0.6809177735830718;
-    goal_poses.push_back(pose2);
+    std::string line;
+    while (std::getline(file, line)) {
+        std::istringstream iss(line);
+        float value;
+        std::vector<float> elements;
 
-    
-    geometry_msgs::msg::PoseStamped pose3;
-    pose3.header.frame_id = "map";
-    pose3.pose.position.x = 2.93;
-    pose3.pose.position.y = 1.00;
-    pose3.pose.position.z = 0.0;
-    pose3.pose.orientation.x = 0.0;
-    pose3.pose.orientation.y = 0.0;
-    pose3.pose.orientation.z = 0.0;
-    pose3.pose.orientation.w = 1.0;
-    goal_poses.push_back(pose3);
+        // Read values separated by spaces and store them in a vector
+        while (iss >> value) {
+            elements.push_back(value);
+        }
+        
+        poses.push_back(elements); // Store elements for each line
+    }
 
-    geometry_msgs::msg::PoseStamped pose4;
-    pose4.header.frame_id = "map";
-    pose4.pose.position.x = -2.55;
-    pose4.pose.position.y = -3.63;
-    pose4.pose.position.z = 0.0;
-    pose4.pose.orientation.x = 0.0;
-    pose4.pose.orientation.y = 0.0;
-    pose4.pose.orientation.z = 0.12364745845764359;
-    pose4.pose.orientation.w = 0.9923262094779949;
-    goal_poses.push_back(pose4);
+    file.close();
+    std::cout << "All the poses" << std::endl;
 
-    geometry_msgs::msg::PoseStamped pose5;
-    pose5.header.frame_id = "map";
-    pose5.pose.position.x = -9.82;
-    pose5.pose.position.y = 2.23;
-    pose5.pose.position.z = 0.0;
-    pose5.pose.orientation.x = 0.0;
-    pose5.pose.orientation.y = 0.0;
-    pose5.pose.orientation.z = 0.8079094295960842;
-    pose5.pose.orientation.w = 0.5893066719202573;
-    goal_poses.push_back(pose5);
-
-    geometry_msgs::msg::PoseStamped pose6;
-    pose6.header.frame_id = "map";
-    pose6.pose.position.x = -6.00;
-    pose6.pose.position.y = 3.11;
-    pose6.pose.position.z = 0.0;
-    pose6.pose.orientation.x = 0.0;
-    pose6.pose.orientation.y = 0.0;
-    pose6.pose.orientation.z = 0.0;
-    pose6.pose.orientation.w = 1.0;
-    goal_poses.push_back(pose6);
-
-    geometry_msgs::msg::PoseStamped pose7;
-    pose7.header.frame_id = "map";
-    pose7.pose.position.x = -7.32;
-    pose7.pose.position.y = -9.0;
-    pose7.pose.position.z = 0.0;
-    pose7.pose.orientation.x = 0.0;
-    pose7.pose.orientation.y = 0.0;
-    pose7.pose.orientation.z = -0.5422258328125239;
-    pose7.pose.orientation.w = 0.8402327928799047;
-    goal_poses.push_back(pose7);
-
-    geometry_msgs::msg::PoseStamped pose8;
-    pose8.header.frame_id = "map";
-    pose8.pose.position.x = 2.60;
-    pose8.pose.position.y = -1.0;
-    pose8.pose.position.z = 0.0;
-    pose8.pose.orientation.x = 0.0;
-    pose8.pose.orientation.y = 0.0;
-    pose8.pose.orientation.z = 0;
-    pose8.pose.orientation.w = 1.0;
-    goal_poses.push_back(pose8);
-
-    geometry_msgs::msg::PoseStamped pose9;
-    pose9.header.frame_id = "map";
-    pose9.pose.position.x = 6.30;
-    pose9.pose.position.y = -2.0;
-    pose9.pose.position.z = 0.0;
-    pose9.pose.orientation.x = 0.0;
-    pose9.pose.orientation.y = 0.0;
-    pose9.pose.orientation.z = -0.9140712174271898;
-    pose9.pose.orientation.w = 0.4055537072585765;
-    goal_poses.push_back(pose9);
-
-    geometry_msgs::msg::PoseStamped pose10;
-    pose10.header.frame_id = "map";
-    pose10.pose.position.x = 10.5;
-    pose10.pose.position.y = 1.86;
-    pose10.pose.position.z = 0.0;
-    pose10.pose.orientation.x = 0.0;
-    pose10.pose.orientation.y = 0.0;
-    pose10.pose.orientation.z = 0.0;
-    pose10.pose.orientation.w = 1.0;
-    goal_poses.push_back(pose10);
-
-    geometry_msgs::msg::PoseStamped pose11;
-    pose11.header.frame_id = "map";
-    pose11.pose.position.x = 12.3;
-    pose11.pose.position.y = 5.30;
-    pose11.pose.position.z = 0.0;
-    pose11.pose.orientation.x = 0.0;
-    pose11.pose.orientation.y = 0.0;
-    pose11.pose.orientation.z = 0.6634877515644353;
-    pose11.pose.orientation.w = 0.7481871447198022;
-    goal_poses.push_back(pose11);
-
-    geometry_msgs::msg::PoseStamped pose12;
-    pose12.header.frame_id = "map";
-    pose12.pose.position.x = 13.3;
-    pose12.pose.position.y = 9.40;
-    pose12.pose.position.z = 0.0;
-    pose12.pose.orientation.x = 0.0;
-    pose12.pose.orientation.y = 0.0;
-    pose12.pose.orientation.z = 0.6484704937485642;
-    pose12.pose.orientation.w = 0.761239790563718;
-    goal_poses.push_back(pose12);
-
-    geometry_msgs::msg::PoseStamped pose13;
-    pose13.header.frame_id = "map";
-    pose13.pose.position.x = 13.3;
-    pose13.pose.position.y = 9.40;
-    pose13.pose.position.z = 0.0;
-    pose13.pose.orientation.x = 0.0;
-    pose13.pose.orientation.y = 0.0;
-    pose13.pose.orientation.z = 0.9530570515006865;
-    pose13.pose.orientation.w = 0.3027907802176576;
-    goal_poses.push_back(pose13);
-
-    geometry_msgs::msg::PoseStamped pose14;
-    pose14.header.frame_id = "map";
-    pose14.pose.position.x = 13.3;
-    pose14.pose.position.y = 9.40;
-    pose14.pose.position.z = 0.0;
-    pose14.pose.orientation.x = 0.0;
-    pose14.pose.orientation.y = 0.0;
-    pose14.pose.orientation.z = 0.9530570515006865;
-    pose14.pose.orientation.w = 0.3027907802176576;
-    goal_poses.push_back(pose14);
-
-    geometry_msgs::msg::PoseStamped pose15;
-    pose15.header.frame_id = "map";
-    pose15.pose.position.x = 12.6;
-    pose15.pose.position.y = -0.8;
-    pose15.pose.position.z = 0.0;
-    pose15.pose.orientation.x = 0.0;
-    pose15.pose.orientation.y = 0.0;
-    pose15.pose.orientation.z = -0.7071076667670175;
-    pose15.pose.orientation.w = 0.7071058956049684;
-    goal_poses.push_back(pose15);
-
-    geometry_msgs::msg::PoseStamped pose16;
-    pose16.header.frame_id = "map";
-    pose16.pose.position.x = 16.9;
-    pose16.pose.position.y = 1.64;
-    pose16.pose.position.z = 0.0;
-    pose16.pose.orientation.x = 0.0;
-    pose16.pose.orientation.y = 0.0;
-    pose16.pose.orientation.z = -0.3366044341216231;
-    pose16.pose.orientation.w = 0.9416461410368875;
-    goal_poses.push_back(pose16);
-
-    geometry_msgs::msg::PoseStamped pose17;
-    pose17.header.frame_id = "map";
-    pose17.pose.position.x = 21.2;
-    pose17.pose.position.y = -2.20;
-    pose17.pose.position.z = 0.0;
-    pose17.pose.orientation.x = 0.0;
-    pose17.pose.orientation.y = 0.0;
-    pose17.pose.orientation.z = 0;
-    pose17.pose.orientation.w = 1.0;
-    goal_poses.push_back(pose17);
-
-    geometry_msgs::msg::PoseStamped pose18;
-    pose18.header.frame_id = "map";
-    pose18.pose.position.x = 21.2;
-    pose18.pose.position.y = -2.20;
-    pose18.pose.position.z = 0.0;
-    pose18.pose.orientation.x = 0.0;
-    pose18.pose.orientation.y = 0.0;
-    pose18.pose.orientation.z = 0;
-    pose18.pose.orientation.w = 1.0;
-    goal_poses.push_back(pose18);
+    for (const auto& lineElements : poses) {
+        for (const auto& element : lineElements) {
+            std::cout << element << " ";
+        }
+        std::cout << std::endl;
+    }
 
   }
 
@@ -258,8 +91,8 @@ public:
     std::random_device rd;
     std::mt19937 gen(rd());
 
-    // Define the range for the random floating-point number (0 to 17)
-    std::uniform_int_distribution<> distribution(0, 17);
+    // Define the range for the random floating-point number (0 to 15)
+    std::uniform_int_distribution<> distribution(0, 15);
     random_number = distribution(gen);
 
 
@@ -283,9 +116,15 @@ public:
 
     auto goal_msg = GoToPose::Goal();
 
-    goal_msg.pose = goal_poses[random_number];
-
-
+    goal_msg.pose.header.frame_id = "map";
+    goal_msg.pose.pose.position.x = poses[random_number][0];
+    goal_msg.pose.pose.position.y = poses[random_number][1];
+    goal_msg.pose.pose.position.z = 0;
+    goal_msg.pose.pose.orientation.x = 0;
+    goal_msg.pose.pose.orientation.y = 0;
+    goal_msg.pose.pose.orientation.z = poses[random_number][2];
+    goal_msg.pose.pose.orientation.w = poses[random_number][3];
+     
     RCLCPP_INFO(this->get_logger(), "Sending goal");
 
     auto send_goal_options =
@@ -314,7 +153,7 @@ private:
   rclcpp::TimerBase::SharedPtr publisher_timer_;
   bool goal_done_;
   int random_number;
-  std::vector<geometry_msgs::msg::PoseStamped> goal_poses;
+  std::vector<std::vector<float>> poses;
   
 
   void goal_response_callback(const GoalHandleGoToPose::SharedPtr &goal_handle) {
@@ -368,13 +207,13 @@ private:
     t.header.stamp = now;
     t.header.frame_id = "map";
     t.child_frame_id = "actual_goal";
-    t.transform.translation.x = goal_poses[random_number].pose.position.x;
-    t.transform.translation.y = goal_poses[random_number].pose.position.y;    
+    t.transform.translation.x = poses[random_number][0];
+    t.transform.translation.y = poses[random_number][1];    
     t.transform.translation.z = 0;
     t.transform.rotation.x = 0;    
     t.transform.rotation.y = 0;
-    t.transform.rotation.z = goal_poses[random_number].pose.orientation.z;
-    t.transform.rotation.w = goal_poses[random_number].pose.orientation.w;
+    t.transform.rotation.z = poses[random_number][2];
+    t.transform.rotation.w = poses[random_number][3];;
 
     tf_broadcaster_publisher_->sendTransform(t);
   }
