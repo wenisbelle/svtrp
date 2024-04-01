@@ -26,6 +26,9 @@ install(
   DIRECTORY
     launch
     config
+    config/custom_costmap
+    config/custom_planner
+    config/custom_controller
     maps
   DESTINATION
     share/${PROJECT_NAME}/

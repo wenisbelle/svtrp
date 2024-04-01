@@ -19,7 +19,7 @@ slam:
     # if you'd like to immediately start continuing a map at a given pose
     # or at the dock, but they are mutually exclusive, if pose is given
     # will use pose
-    map_file_name: /home/wenis/Portifolio/Just_ROS/SVTRP/ros2/src/slam/maps/my_map
+    map_file_name: /home/wenis/Portifolio/ROS/SVTRP/ros2/src/slam/maps/my_map    
     map_start_pose: [0.0, 0.0, 0.0]
     map_start_at_dock: true
 

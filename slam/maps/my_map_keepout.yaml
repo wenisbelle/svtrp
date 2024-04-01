@@ -1,4 +1,5 @@
 image: my_map_keepout.pgm
+mode: trinary
 resolution: 0.05
 origin: [-13.8, -10.4, 0]
 negate: 0

@@ -10,6 +10,7 @@
 
 <xacro:include filename="$(find robot_description)/urdf/camera.xacro" />
 <xacro:include filename="$(find robot_description)/urdf/hokuyo.xacro" />
+<xacro:include filename="$(find robot_description)/urdf/IMU.xacro" />
 
 
   <!-- BASE_LINK -->
@@ -86,6 +87,8 @@
 
 <xacro:robot_camera/> 
 
-<xacro:robot_lidar/> 
- 
+<xacro:robot_lidar/>
+
+<xacro:base_IMU/> 
+
 </robot> 

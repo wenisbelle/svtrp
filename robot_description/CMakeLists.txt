@@ -16,10 +16,24 @@ find_package(joint_state_broadcaster REQUIRED)
 find_package(joint_trajectory_controller REQUIRED)
 find_package(velocity_controllers REQUIRED)
 
+#for the fake battery
+find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
+find_package(custom_interfaces REQUIRED)
+find_package(sensor_msgs REQUIRED)
+
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
   ament_lint_auto_find_test_dependencies()
 endif()
+
+add_executable(fake_battery_status src/fake_battery_status.cpp)
+ament_target_dependencies(fake_battery_status rclcpp std_msgs sensor_msgs)
+
+install(TARGETS
+   fake_battery_status
+   DESTINATION lib/${PROJECT_NAME}
+ )
 
 install(
   DIRECTORY

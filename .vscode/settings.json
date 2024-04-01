@@ -84,5 +84,6 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "/home/wenis/Portifolio/Just_ROS/SVTRP/ros2/src/robot_description"
 }

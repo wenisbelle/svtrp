@@ -1,0 +1,5 @@
+<library path="custom_moving_costmap_plugin_core">
+  <class name="custom_moving_costmap/CustomMovingCostmap" type="custom_moving_costmap::CustomMovingCostmap" base_class_type="nav2_costmap_2d::Layer">
+    <description>This is an example plugin which puts a moving costmap</description>
+  </class>
+</library>
