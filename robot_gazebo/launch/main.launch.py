@@ -18,6 +18,9 @@ def generate_launch_description():
     
     spawn_controllers_launch_file = os.path.join(
         get_package_share_directory('robot_gazebo'), 'launch', 'control_position_velocity_robot_description.launch.py')
+    
+    spawn_localization_launch_file = os.path.join(
+        get_package_share_directory('kalman_filters'), 'launch', 'basic_mobile_ekf.launch.py')
 
     return LaunchDescription([
         # Launch first_launch.py
@@ -55,6 +58,17 @@ def generate_launch_description():
                 # Launch second_launch.py
                 IncludeLaunchDescription(
                     PythonLaunchDescriptionSource(spawn_controllers_launch_file),
+                    launch_arguments={}.items(),
+                ),
+            ],
+        ),
+
+        TimerAction(
+            period=1.0, 
+            actions=[
+                # Launch second_launch.py
+                IncludeLaunchDescription(
+                    PythonLaunchDescriptionSource(spawn_localization_launch_file),
                     launch_arguments={}.items(),
                 ),
             ],

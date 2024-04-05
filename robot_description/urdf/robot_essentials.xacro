@@ -1,81 +1,41 @@
 <?xml version="1.0"?> 
 
-<robot xmlns:xacro="http://ros.org/wiki/xacro" name="robot_essentials" > 
+<robot xmlns:xacro="http://ros.org/wiki/xacro" name="robot_essentials" >
+<xacro:property name="wheel_color" value="0.0 0.0 0.0 1"/> <!-- RGBA values -->
+
 
 <xacro:macro name="robot_wheel" params="prefix origin"> 
 
 <link name="${prefix}_wheel"> 
-<collision> 
+  <collision>
+    <origin xyz="${origin}" rpy="1.5707963267949 0 0" /> 
+    <geometry> 
+      <cylinder radius="0.06" length="0.04" />
+    </geometry> 
+  </collision> 
 
-      <origin 
-
-        xyz="${origin}" 
-
-        rpy="1.5707963267949 0 0" /> 
-
-      <geometry> 
-
-
-       <cylinder radius="0.06" length="0.04" />
-      </geometry> 
-
-    </collision> 
-
-    <inertial> 
-
-      <origin 
-
-        xyz="-4.1867E-18 0.0068085 -1.65658661799998E-18" 
-
-        rpy="0 0 0" /> 
-
-      <mass 
-
-        value="0.378" /> 
-
-      <inertia 
-
-        ixx="0.00856502765719703" 
-
-        ixy="1.5074118157338E-19" 
-
-        ixz="-4.78150098725052E-19" 
-
-        iyy="0.013670640432096" 
-
-        iyz="-2.68136447099727E-19" 
-
-        izz="0.00856502765719703" /> 
-
-    </inertial> 
-       <visual> 
-
-      <origin 
-
-        xyz="${origin}" 
-
-        rpy="1.5707963267949 0 0" /> 
-
-      <geometry> 
-
-        
-       <cylinder radius="0.06" length="0.04" />
-
-      </geometry> 
-
-      <material 
-
-        name=""> 
-
-        <color 
-
-          rgba="0.79216 0.81961 0.93333 1" /> 
-
-      </material> 
-
-    </visual> 
+  <inertial> 
+    <origin xyz="-4.1867E-18 0.0068085 -1.65658661799998E-18" rpy="0 0 0" /> 
+    <mass value="0.378" /> 
+    <inertia ixx="0.00856502765719703" ixy="1.5074118157338E-19" ixz="-4.78150098725052E-19" 
+        iyy="0.013670640432096" iyz="-2.68136447099727E-19" izz="0.00856502765719703" /> 
+  </inertial> 
+  
+  <visual> 
+    <origin xyz="${origin}" rpy="1.5707963267949 0 0" /> 
+    <geometry>        
+      <cylinder radius="0.06" length="0.04" />
+    </geometry>
+    <material name="wheel_material">
+        <color rgba="${wheel_color}"/>
+    </material> 
+  </visual> 
 
 </link> 
+
+<gazebo reference="${prefix}_wheel">
+  <material>Gazebo/Black</material>
+</gazebo>
 
 </xacro:macro> 
 

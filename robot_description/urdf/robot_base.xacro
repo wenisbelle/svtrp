@@ -12,13 +12,16 @@
 <xacro:include filename="$(find robot_description)/urdf/hokuyo.xacro" />
 <xacro:include filename="$(find robot_description)/urdf/IMU.xacro" />
 
+<xacro:property name="black" value="0.0 0.0 0.0 1"/> <!-- RGBA values -->
+
+
 
   <!-- BASE_LINK -->
   <link name="base_link">
     <collision>
       <origin xyz="0 0 0.0" rpy="0 0 0" />
       <geometry>
-        <!--<mesh filename="package://mobile_manipulator_body/meshes/robot_base.stl"/>-->
+        <!--mesh filename="package://robot_description/meshes/robot_base.stl"/-->
         <box size="0.38 0.203 0.07" />
       </geometry>
     </collision>
@@ -30,24 +33,28 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <!--<mesh filename="package://mobile_manipulator_body/meshes/robot_base.stl"/>-->
         <box size="0.38 0.203 0.07" />
       </geometry>
+      <material name="wheel_material">
+        <color rgba="0.0 0.0 0.0 1.0"/>
+    </material> 
     </visual>
   </link>
+
+<gazebo reference="base_link">
+  <material>Gazebo/Black</material>
+</gazebo>
 
   <!-- Base FootPrint Link-->
 
  <joint name="base_footprint_joint" type="fixed">
-    <origin xyz="0 0 0" rpy="0 0 0" />
+    <origin xyz="0 0 -0.06" rpy="0 0 0" />
     <parent link="base_link" />
     <child link="base_footprint" />
  </joint>
 
   <link name="base_footprint">
   </link>
-
-
   
 <xacro:robot_wheel prefix="front_left" origin="0 0 0"/> 
 

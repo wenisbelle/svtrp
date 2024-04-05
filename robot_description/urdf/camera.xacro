@@ -152,13 +152,27 @@
   </link>
   
   <!-- Depth Camera-->
-   <joint name="camera_depth_joint" type="fixed">
-   <origin xyz="0 0 0" rpy="-1.57075 0 -1.57075"/>
-   <child link="camera_depth_link"/>
-    <parent link="front_camera_link"/>    
+  <joint name="camera_depth_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="camera_depth_link"/>
+    <origin xyz="0.21 0.0 0.0" rpy="0.0 0.0 0.0"/>
+  </joint>
+
+  <link name="camera_depth_link">
+    <visual>
+      <geometry>
+        <mesh filename="package://robot_description/meshes/realsense.dae"/>
+      </geometry>
+    </visual>
+  </link>
+
+  <joint name="depth_camera_optical_joint" type="fixed">
+    <parent link="camera_depth_link"/>
+    <child link="depth_camera_link_optical"/>
+    <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}"/>
   </joint>
   
-   <link name="camera_depth_link"></link>
+  <link name="depth_camera_link_optical"></link>
 
   <!-- POINT CLOUND SENSOR -->
   <link name="pointcloud_link">
