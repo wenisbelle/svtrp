@@ -11,6 +11,8 @@
 <xacro:include filename="$(find robot_description)/urdf/camera.xacro" />
 <xacro:include filename="$(find robot_description)/urdf/hokuyo.xacro" />
 <xacro:include filename="$(find robot_description)/urdf/IMU.xacro" />
+<xacro:include filename="$(find robot_description)/urdf/GPS.xacro" />
+
 
 <xacro:property name="black" value="0.0 0.0 0.0 1"/> <!-- RGBA values -->
 
@@ -96,6 +98,8 @@
 
 <xacro:robot_lidar/>
 
-<xacro:base_IMU/> 
+<xacro:base_IMU/>
+
+<xacro:gps/>
 
 </robot> 
