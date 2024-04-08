@@ -7,3 +7,6 @@ Ambiente ROS2 Humble e Ubuntu 22.04
 - Navegação: ros2 launch slam navigation2_launch.py, mostrar como usar o nav2 painel para waipoints
 - Navegação com região de segurança: ros2 launch slam navigation2_filtered.launch.py, m
 - Go to poses gerado de forma randômica: ros2 launch nav2_features go_to_poses.launch.py
+
+- Outdoor localization, está baseado no pacote kalman_filters. O launch file mapviz é responsável por criar um mapa do ambien em questão
+utiliza uma chave API da bing (https://www.bingmapsportal.com/Application#). Tudo foi baseado nesse tutorial: https://navigation.ros.org/tutorials/docs/navigation2_with_gps.html?highlight=outdoor

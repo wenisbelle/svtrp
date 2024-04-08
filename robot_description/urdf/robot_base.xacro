@@ -16,8 +16,6 @@
 
 <xacro:property name="black" value="0.0 0.0 0.0 1"/> <!-- RGBA values -->
 
-
-
   <!-- BASE_LINK -->
   <link name="base_link">
     <collision>
@@ -51,8 +49,8 @@
 
  <joint name="base_footprint_joint" type="fixed">
     <origin xyz="0 0 -0.06" rpy="0 0 0" />
-    <parent link="base_link" />
-    <child link="base_footprint" />
+    <parent link="base_footprint" />
+    <child link="base_link" />
  </joint>
 
   <link name="base_footprint">

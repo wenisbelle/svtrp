@@ -20,7 +20,7 @@ def generate_launch_description():
         get_package_share_directory('robot_gazebo'), 'launch', 'control_position_velocity_robot_description.launch.py')
     
     spawn_localization_launch_file = os.path.join(
-        get_package_share_directory('kalman_filters'), 'launch', 'basic_mobile_ekf.launch.py')
+        get_package_share_directory('kalman_filters'), 'launch', 'outdoor_ekf.launch.py')
 
     return LaunchDescription([
         # Launch first_launch.py
