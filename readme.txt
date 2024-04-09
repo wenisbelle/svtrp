@@ -10,3 +10,4 @@ Ambiente ROS2 Humble e Ubuntu 22.04
 
 - Outdoor localization, está baseado no pacote kalman_filters. O launch file mapviz é responsável por criar um mapa do ambien em questão
 utiliza uma chave API da bing (https://www.bingmapsportal.com/Application#). Tudo foi baseado nesse tutorial: https://navigation.ros.org/tutorials/docs/navigation2_with_gps.html?highlight=outdoor
+- Navigation Outdoor: trocar o local planner pra navegação outdoor, para aquele mais rápido 
