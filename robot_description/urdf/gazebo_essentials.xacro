@@ -198,7 +198,7 @@
               </vertical>
           </scan>
           <range>
-              <min>0.10</min>
+              <min>0.30</min>
               <max>5.0</max>
               <resolution>0.01</resolution>
           </range>

@@ -7,7 +7,9 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 find_package(rclcpp REQUIRED)
+find_package(rclpy REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(nav2_msgs REQUIRED)
 find_package(rclcpp_action REQUIRED)
@@ -28,8 +30,22 @@ install(TARGETS
 # Install launch files.
 install(DIRECTORY
   launch
+  scripts
+  config
   DESTINATION share/${PROJECT_NAME}/
 )
+
+# Install Python modules
+ament_python_install_package(${PROJECT_NAME})
+# Install Python executables
+install(PROGRAMS
+  scripts/gps_waypoint_logger.py
+  scripts/gps_utils.py
+  scripts/interactive_waypoint_follower.py
+  scripts/logged_waypoint_follower.py
+  DESTINATION lib/${PROJECT_NAME}
+)
+
 
 
 if(BUILD_TESTING)
