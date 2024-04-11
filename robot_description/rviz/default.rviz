@@ -6,7 +6,6 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /Map4/Status1
         - /Map4/Topic1
       Splitter Ratio: 0.5
     Tree Height: 539
@@ -110,6 +109,11 @@ Visualization Manager:
           Show Axes: false
           Show Trail: false
           Value: true
+        gps_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         left_camera_link:
           Alpha: 1
           Show Axes: false
@@ -170,6 +174,8 @@ Visualization Manager:
           Value: true
         front_right_wheel:
           Value: true
+        gps_link:
+          Value: true
         left_camera_link:
           Value: true
         map:
@@ -195,33 +201,34 @@ Visualization Manager:
         map:
           {}
         odom:
-          base_link:
-            base_IMU_link:
-              {}
-            base_footprint:
-              {}
-            camera_depth_link:
-              depth_camera_link_optical:
+          base_footprint:
+            base_link:
+              base_IMU_link:
                 {}
-            front_camera_link:
-              pointcloud_link:
+              camera_depth_link:
+                depth_camera_link_optical:
+                  {}
+              front_camera_link:
+                pointcloud_link:
+                  {}
+              front_hokuyo:
                 {}
-            front_hokuyo:
-              {}
-            front_left_wheel:
-              {}
-            front_right_wheel:
-              {}
-            left_camera_link:
-              {}
-            rear_camera_link:
-              {}
-            rear_left_wheel:
-              {}
-            rear_right_wheel:
-              {}
-            right_camera_link:
-              {}
+              front_left_wheel:
+                {}
+              front_right_wheel:
+                {}
+              gps_link:
+                {}
+              left_camera_link:
+                {}
+              rear_camera_link:
+                {}
+              rear_left_wheel:
+                {}
+              rear_right_wheel:
+                {}
+              right_camera_link:
+                {}
       Update Interval: 0
       Value: true
     - Alpha: 1
@@ -412,38 +419,30 @@ Visualization Manager:
         Value: /keepout_filter_mask_updates
       Use Timestamp: false
       Value: true
-    - Acceleration properties:
-        Acc. vector alpha: 1
-        Acc. vector color: 255; 0; 0
-        Acc. vector scale: 1
-        Derotate acceleration: true
-        Enable acceleration: false
-      Axes properties:
-        Axes scale: 1
-        Enable axes: true
-      Box properties:
-        Box alpha: 1
-        Box color: 255; 0; 0
-        Enable box: false
-        x_scale: 1
-        y_scale: 1
-        z_scale: 1
-      Class: rviz_imu_plugin/Imu
+    - Alpha: 1
+      Axes Length: 1
+      Axes Radius: 0.10000000149011612
+      Class: rviz_default_plugins/Pose
+      Color: 255; 25; 0
       Enabled: true
-      Name: Imu
+      Head Length: 0.30000001192092896
+      Head Radius: 0.10000000149011612
+      Name: Pose
+      Shaft Length: 1
+      Shaft Radius: 0.05000000074505806
+      Shape: Arrow
       Topic:
         Depth: 5
         Durability Policy: Volatile
         Filter size: 10
         History Policy: Keep Last
         Reliability Policy: Reliable
-        Value: /imu
+        Value: /goal_pose
       Value: true
-      fixed_frame_orientation: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: odom
+    Fixed Frame: map
     Frame Rate: 30
   Name: root
   Tools:
@@ -486,25 +485,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 6.7201995849609375
+      Distance: 6.2430739402771
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: -0.8629631400108337
-        Y: -0.6125555634498596
-        Z: 1.6475416421890259
+        X: -0.24868634343147278
+        Y: 1.1923751831054688
+        Z: 0.7831779718399048
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.9897962212562561
+      Pitch: 0.6747963428497314
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz_default_plugins)
-      Yaw: 2.8273885250091553
+      Yaw: 2.9923884868621826
     Saved: ~
 Window Geometry:
   Displays:
