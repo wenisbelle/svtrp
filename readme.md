@@ -40,7 +40,7 @@ You will have the following result:
 
 The navigation package used is the nav2 (https://navigation.ros.org/). In order to run the simple nav2 node you just need to run:
 
-    ros2 launch slam navigation2_launch.py
+    ros2 launch slam navigation2.launch.py
 
 I also implemented some useful tools available in the nav2 package
 
@@ -48,11 +48,28 @@ I also implemented some useful tools available in the nav2 package
 
 I applied a keep out filter in some region such as this one developed in this tutorial: https://navigation.ros.org/tutorials/docs/navigation2_with_keepout_filter.html. It's really usefull but It has a problem, it doesn't create a costmap around the region, so in many attempts the path will be too much closer to the region and the robot will be stucked. To solve this problem I will create a mask around this region, but unfortunately I didn't have time to do so yet.
 
-This is a project that demonstrates how to use Markdown in README files.
+But for now, when you launch with this filter with:
 
-## Example Image
+    ros2 launch slam navigation2_filtered.launch.py
+
+You will have something like that:
 
 ![Indoor mapping](images/indoor_nav2_keepout.png)
+
+There are more modifications that I tested and you can dive in the slam package.
+
+
+### Outdoor Navigation
+
+To launch this simulation you can run:
+
+    ros2 launch robot_gazebo main_indoor.launch.py
+
+This command will launch the nodes such as the indoor navigation, but configured to the outdoor environment. The main changes here are the world and the localization configuration file, because now the robot uses the gps to build a the transformation between the map and the odometry frame.
+
+Everything that is developed in this part is based on this very good documentation provided by nav2: (https://navigation.ros.org/tutorials/docs/navigation2_with_gps.html.
+
+
 
 - Outdoor localization, está baseado no pacote kalman_filters. O launch file mapviz é responsável por criar um mapa do ambien em questão
 utiliza uma chave API da bing (https://www.bingmapsportal.com/Application#). Tudo foi baseado nesse tutorial: https://navigation.ros.org/tutorials/docs/navigation2_with_gps.html?highlight=outdoor
