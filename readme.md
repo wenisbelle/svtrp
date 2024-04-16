@@ -71,11 +71,7 @@ Everything that is developed in this part is based on this very good documentati
 
 ### Computer Vision
 
-In this part I have two separate packages:
-ball_tracker and yolo. The first one is based on this
-repository https://github.com/joshnewans/ball_tracker and,
- as the name points out, is responsible for tracking and following
-  an object. The second is merely the using of Yolo V8 in ROS2, based
+In this part I have a package that is using Yolo V8 in ROS2, based
 on this video https://www.youtube.com/watch?v=XqibXP4lwgA&t=649s.
 
 You can run the following command to see the application with yoloV8:
