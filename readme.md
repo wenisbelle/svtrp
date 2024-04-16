@@ -79,7 +79,7 @@ In this part I have two separate packages: ball_tracker and yolo. The first one 
 
 In this part there are some other features developed in this context in order to help the surveillance activities.
 
-#### Randon Navigation
+#### Random Navigation
 
 It has been created a simple c++ program that send go to pose commands randomly based on the poses stored on the *poses.txt* file. You would need to pass these poses to the file manually, but once it was done, the robot can navigate through them in a way that the next pose is not predefined, something important in a surveillance system. 
 
