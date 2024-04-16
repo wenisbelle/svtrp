@@ -10,7 +10,7 @@ This repository includes the simulations made for the SVTRP CTEx Fase 0 for test
 - Gazebo Classic 11
 
 ## Usage
-Let's break down in three main areas: indoor navigation, outdoor navigation and Computer Visual Features.
+Let's break down in three main areas: indoor navigation, outdoor navigation, Computer Vision and Other Features.
 
 ### Indoor Navigation
 To launch the simulation run:
@@ -67,14 +67,24 @@ To launch this simulation you can run:
 
 This command will launch the nodes such as the indoor navigation, but configured to the outdoor environment. The main changes here are the world and the localization configuration file, because now the robot uses the gps to build a the transformation between the map and the odometry frame.
 
-Everything that is developed in this part is based on this very good documentation provided by nav2: (https://navigation.ros.org/tutorials/docs/navigation2_with_gps.html. So you can follow this tutorial to fully understand this package.
+Everything that is developed in this part is based on this very good documentation provided by nav2: (https://navigation.ros.org/tutorials/docs/navigation2_with_gps.html. So you can follow this tutorial to fully understand this package. It's worth to mention that the navigation controller was changed from DWB to Regulated Pure Pursuit, in order to increase the robot speed.
 
-### Computer Vision Features
+### Computer Vision
+
+In this part I have two separate packages: ball_tracker and yolo. The first one is based on this repository https://github.com/joshnewans/ball_tracker and, as the name points out, is responsible for tracking and following an object. The second is merely the using of Yolo V8 in ROS2.
+
+## Put some images here
+
+### Other Features
+
+In this part there are some other features developed in this context in order to help the surveillance activities.
+
+#### Randon Navigation
+
+It has been created a simple c++ program that send go to pose commands randomly based on the poses stored on the *poses.txt* file. You would need to pass these poses to the file manually, but once it was done, the robot can navigate through them in a way that the next pose is not predefined, something important in a surveillance system. 
+
+To run this you need to launch the simulation and the slam launch file and them:
+
+     ros2 run nav2_features go_to_pose
 
 
-
-
-
-- Outdoor localization, está baseado no pacote kalman_filters. O launch file mapviz é responsável por criar um mapa do ambien em questão
-utiliza uma chave API da bing (https://www.bingmapsportal.com/Application#). Tudo foi baseado nesse tutorial: https://navigation.ros.org/tutorials/docs/navigation2_with_gps.html?highlight=outdoor
-- Navigation Outdoor: trocar o local planner pra navegação outdoor, para aquele mais rápido 
