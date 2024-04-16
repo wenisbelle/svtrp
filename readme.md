@@ -67,7 +67,11 @@ To launch this simulation you can run:
 
 This command will launch the nodes such as the indoor navigation, but configured to the outdoor environment. The main changes here are the world and the localization configuration file, because now the robot uses the gps to build a the transformation between the map and the odometry frame.
 
-Everything that is developed in this part is based on this very good documentation provided by nav2: (https://navigation.ros.org/tutorials/docs/navigation2_with_gps.html.
+Everything that is developed in this part is based on this very good documentation provided by nav2: (https://navigation.ros.org/tutorials/docs/navigation2_with_gps.html. So you can follow this tutorial to fully understand this package.
+
+### Computer Vision Features
+
+
 
 
 
